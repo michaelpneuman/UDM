@@ -10,7 +10,7 @@
     mkdir udm_source
     tar zvxf udm.tar.gz -C udm_source --strip-components=1
     unifi-os shell
-    curl -L https://github.com/michaelpneuman/UDM/blob/master/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
+    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
     dpkg -i udm-boot_1.0.1-1_all.deb
     exit
     cd udm_source
