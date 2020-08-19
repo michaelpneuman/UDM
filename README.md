@@ -2,48 +2,54 @@
 
 ## Steps
 
-1. Get into the unifios shell on your udm
+1. Download scripts
 
     ```bash
+    cd /mnt/data
+    curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
+    mkdir udm_source
+    tar zvxf udm.tar.gz -C udm_source --strip-components=1
     unifi-os shell
-    ```
-
-2. Download [udm-boot_1.0.1-1_all.deb](packages/udm-boot_1.0.1-1_all.deb) and install it and go back to the UDM
-
-    ```bash
     curl -L https://github.com/michaelpneuman/UDM/blob/master/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
     dpkg -i udm-boot_1.0.1-1_all.deb
     exit
+    cd udm_source
+    mv scripts/* /mnt/data/on_boot.d
+    cd /mnt/data
+    rm -R udm_source
+    rm udm.tar.gz
     ```
 
-3. Create directory structure
+2. Modify script parameters (using VI text editor)
 
     ```bash
-    cd /mnt/data/on_bood.d
-    mkdir dependencies
-    ```
+    cd /mnt/data/on_boot.d/dependencies
+    vi unifi_alias.py
+    ```    
 
-4. Download scripts
+    * Replace [IP] with the IP address of your UDM UniFi Controller
+    * Replace [USERNAME] with the username to log into your controller
+    * Replace [PASSWORD] with the password to log into your controller
+    * Replace [SITE] with the site name (the standard site is called "default")
 
-5. Modify script parameters (using VI text editor)
-
-    Replace [IP] with the IP address of your UDM UniFi Controller
-    Replace [USERNAME] with the username to log into your controller
-    Replace [PASSWORD] with the password to log into your controller
-    Replace [SITE] with the site name (the standard site is called "default")
-
-6. Set script permissions
+3. Set script permissions
 
     ```bash
-    chmod +x *.sh
-    chmod +x dependencies/*.sh
+    chmod +x /mnt/data/on_boot.d/*.sh
+    chmod +x /mnt/data/on_boot.d/dependencies/*.sh
     ```
 
-7. Reboot the controller and give it a go!
+4. Reboot the controller and give it a go!
 
 
 ## Testing
 
 * Create an alias for a host in the unifi controller
 * Within 1-2 minutes the above scripts will automatically detect and add the hosts to DNSMASQ configurations
+* You can check this is successful because there will be a new configuration file containing the host-record[s]
+
+    ```bash
+    tail /run/dnsmasq.conf.d/hosts.conf
+    ```
+
 * On your local computer, trying pinging the alias using the FQDN:  (example: ping alias.mydomain.local)
