@@ -36,7 +36,7 @@
 
     ```bash
     chmod +x /mnt/data/on_boot.d/*.sh
-    chmod +x /mnt/data/on_boot.d/dependencies/*.sh
+    chmod +x /mnt/data/on_boot.d/dependencies/*
     ```
 
 4. Reboot the controller and give it a go!
