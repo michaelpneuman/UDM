@@ -4,7 +4,7 @@
 
 1.a. Download scripts (NEW INSTALLATION)
 
-    ```bash
+    
     cd /mnt/data
     curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
     mkdir udm_source
@@ -18,11 +18,11 @@
     cd /mnt/data
     rm -R udm_source
     rm udm.tar.gz
-    ```
+    
     
 1.b. Update scripts (EXISTING INSTALLATION)
 
-    ```bash
+    
     cd /mnt/data
     curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
     mkdir udm_source
@@ -32,7 +32,7 @@
     cd /mnt/data
     rm -R udm_source
     rm udm.tar.gz
-    ```
+    
 
 2. Modify script parameters (using VI text editor)
 
