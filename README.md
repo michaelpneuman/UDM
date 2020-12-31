@@ -2,7 +2,7 @@
 
 ## Steps
 
-1. Download scripts
+1a. Download scripts (NEW INSTALLATION)
 
     ```bash
     cd /mnt/data
@@ -13,6 +13,18 @@
     curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
     dpkg -i udm-boot_1.0.1-1_all.deb
     exit
+    cd udm_source
+    mv scripts/* /mnt/data/on_boot.d
+    cd /mnt/data
+    rm -R udm_source
+    rm udm.tar.gz
+    ```
+1b. Update scripts (EXISTING INSTALLATION)
+    ```bash
+    cd /mnt/data
+    curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
+    mkdir udm_source
+    tar zvxf udm.tar.gz -C udm_source --strip-components=1
     cd udm_source
     mv scripts/* /mnt/data/on_boot.d
     cd /mnt/data
