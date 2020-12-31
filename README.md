@@ -2,7 +2,7 @@
 
 ## Steps
 
-1a. Download scripts (NEW INSTALLATION)
+1.a. Download scripts (NEW INSTALLATION)
 
     ```bash
     cd /mnt/data
@@ -19,7 +19,9 @@
     rm -R udm_source
     rm udm.tar.gz
     ```
-1b. Update scripts (EXISTING INSTALLATION)
+    
+1.b. Update scripts (EXISTING INSTALLATION)
+
     ```bash
     cd /mnt/data
     curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
