@@ -15,7 +15,7 @@ password = os.environ.get('UNIFI_PASSWORD', '[PASSWORD]')
 site = os.environ.get('UNIFI_SITE', '[SITE]')
 fixed_only = os.environ.get('FIXED_ONLY', False)
 
-outformat = 'dsnmasq'
+outformat = 'dnscmasq'
 
 if len(sys.argv)==2:
     outformat=sys.argv[1]
