@@ -15,6 +15,10 @@ password = os.environ.get('UNIFI_PASSWORD', '[PASSWORD]')
 site = os.environ.get('UNIFI_SITE', '[SITE]')
 fixed_only = os.environ.get('FIXED_ONLY', False)
 
+outformat = 'dsnmasq'
+
+if len(sys.argv)==2:
+    outformat=sys.argv[1]
 
 def get_configured_clients(session):
     # Get configured clients
@@ -70,7 +74,11 @@ if __name__ == '__main__':
             if 'domain_name' in n and n['domain_name']!="":
                 for c in get_clients():
                     if 'network' in c and c['network']==n['name']:
-                        print('host-record='+c['name']+'.'+n['domain_name']+','+c['ip'])
+                        if outformat=='dnsmasq':
+                            print('host-record='+c['name']+'.'+n['domain_name']+','+c['ip'])
+                        elif outformat=='pihole':
+                            print(c['ip']+' '+c['name']+'.'+n['domain_name'])
+						
     except requests.exceptions.ConnectionError:
         print('Could not connect to unifi controller at %s' % baseurl, file=sys.stderr)
         exit(1)
