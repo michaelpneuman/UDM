@@ -15,7 +15,7 @@ while true; do
     localVer=$(diff -Na $hosts_dir /tmp/current_hosts.conf)
     piVer=$(diff -Na $hosts_dir_pihole /tmp/current_hosts_pihole.conf)
 
-     if ([ -n "$localVer" ] || [ -n "$piVer" ]); then
+     if ([ ! -z "$localVer" ] || [ ! -z "$piVer" ]); then
 	echo "changes found"
         mv /tmp/current_hosts.conf $hosts_dir
 	mv /tmp/current_hosts_pihole.conf $hosts_dir_pihole
