@@ -5,17 +5,15 @@
 1.a. Download scripts (NEW INSTALLATION)
 
     
-    cd /mnt/data
+    cd /data
     curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
     mkdir udm_source
     tar zvxf udm.tar.gz -C udm_source --strip-components=1
-    unifi-os shell
-    curl -L https://raw.githubusercontent.com/boostchicken/udm-utilities/master/on-boot-script/packages/udm-boot_1.0.1-1_all.deb -o udm-boot_1.0.1-1_all.deb
-    dpkg -i udm-boot_1.0.1-1_all.deb
+    curl -fsL "https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/on-boot-script/remote_install.sh" | /bin/sh
     exit
     cd udm_source
-    mv scripts/* /mnt/data/on_boot.d
-    cd /mnt/data
+    mv scripts/* /data/on_boot.d
+    cd /data
     rm -R udm_source
     rm udm.tar.gz
     
@@ -23,13 +21,13 @@
 1.b. Update scripts (EXISTING INSTALLATION)
 
     
-    cd /mnt/data
+    cd /data
     curl -L https://github.com/michaelpneuman/UDM/tarball/master > udm.tar.gz
     mkdir udm_source
     tar zvxf udm.tar.gz -C udm_source --strip-components=1
     cd udm_source
-    mv scripts/* /mnt/data/on_boot.d
-    cd /mnt/data
+    mv scripts/* /data/on_boot.d
+    cd /data
     rm -R udm_source
     rm udm.tar.gz
     
@@ -37,20 +35,20 @@
 2. Modify script parameters (using VI text editor)
 
     ```bash
-    cd /mnt/data/on_boot.d/dependencies
+    cd /data/on_boot.d/dependencies
     vi unifi_alias.py
     ```    
 
     * Replace [IP] with the IP address of your UDM UniFi Controller
-    * Replace [USERNAME] with the username to log into your controller
-    * Replace [PASSWORD] with the password to log into your controller
+    * Replace [USER] with the username to log into your controller
+    * Replace [PASS] with the password to log into your controller
     * Replace [SITE] with the site name (the standard site is called "default")
 
 3. Set script permissions
 
     ```bash
-    chmod +x /mnt/data/on_boot.d/*.sh
-    chmod +x /mnt/data/on_boot.d/dependencies/*
+    chmod +x /data/on_boot.d/*.sh
+    chmod +x /data/on_boot.d/dependencies/*
     ```
 
 4. Reboot the controller and give it a go!

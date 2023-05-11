@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 import re
 import sys
@@ -10,9 +10,9 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 baseurl = os.environ.get('UNIFI_BASEURL', 'https://[IP]/proxy/network')
 baseloginurl = os.environ.get('UNIFI_BASELOGINURL', 'https://[IP]')
-username = os.environ.get('UNIFI_USERNAME', '[USERNAME]')
-password = os.environ.get('UNIFI_PASSWORD', '[PASSWORD]')
-site = os.environ.get('UNIFI_SITE', '[SITE]')
+username = os.environ.get('UNIFI_USERNAME', '[USER]')
+password = os.environ.get('UNIFI_PASSWORD', '[PASS]')
+site = os.environ.get('UNIFI_SITE', 'default')
 fixed_only = os.environ.get('FIXED_ONLY', False)
 
 outformat = 'dnsmasq'
